@@ -1,0 +1,11 @@
+C:\Projects\C#\The Life Game\obj\Debug\netcoreapp3.1\The Life Game.csprojAssemblyReference.cache
+C:\Projects\C#\The Life Game\obj\Debug\netcoreapp3.1\The Life Game.AssemblyInfoInputs.cache
+C:\Projects\C#\The Life Game\obj\Debug\netcoreapp3.1\The Life Game.AssemblyInfo.cs
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.exe
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.deps.json
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.runtimeconfig.json
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.runtimeconfig.dev.json
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.dll
+C:\Projects\C#\The Life Game\bin\Debug\netcoreapp3.1\The Life Game.pdb
+C:\Projects\C#\The Life Game\obj\Debug\netcoreapp3.1\The Life Game.dll
+C:\Projects\C#\The Life Game\obj\Debug\netcoreapp3.1\The Life Game.pdb
