@@ -51,7 +51,7 @@ namespace The_Life_Game
         {
             var direction = (Direction)(new Random().Next(1, 4));
             var step = 5;
-
+            
             switch (direction)
             {
                 case Direction.Up:
@@ -71,6 +71,13 @@ namespace The_Life_Game
                     location.X -= step;
                     break;
             }
+
+            age -= 1; // каждый шаг имеет последствия
+        }
+
+        public void HaveLunch()
+        {
+            age += 20;
         }
     }
 }

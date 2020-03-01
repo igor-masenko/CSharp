@@ -12,12 +12,14 @@ namespace The_Life_Game
 {
     public partial class Form1 : Form
     {
+        private long time = 0; // кол-во шагов (время от рождения первых клеток)
         private Graphics graphics;
-        // в начале всего были Адам и Ева
+        private List<Meal> meals = new List<Meal>();
         private List<Cell> population = new List<Cell>()
         { 
-            new Cell(Sex.Male, new Point(200, 200)), 
-            new Cell(Sex.Female, new Point(150, 200)) 
+            // в начале всего были Адам и Ева
+            new Cell(Sex.Male, new Point(245, 250)), 
+            new Cell(Sex.Female, new Point(255, 250)) 
         };
 
         public Form1()
@@ -29,23 +31,65 @@ namespace The_Life_Game
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            time++;
             pictureBox.Refresh();
-            var kids = new List<Cell>(); // здесь будут дети, появшиеся от пересечения 
-            
             foreach (var cell in population)
             {
                 cell.Run();
+                if (IsMeal(cell)) cell.HaveLunch();
                 graphics.FillEllipse(cell.Color, cell.Location.X, cell.Location.Y, Cell.Radius, Cell.Radius);
-            }
 
+            }
+            foreach (var meal in meals)
+                graphics.FillEllipse(meal.Color, meal.Location.X, meal.Location.Y, Meal.Radius, Meal.Radius);
+
+            population.RemoveAll(IsAlive); // убиваем всех старичков
+            NewCell();  // рожаем новые клетки
+            NewMeal();
+        }
+
+        // make out - заняться сексом 
+        private bool IsMakeOut(Cell male, Cell female)
+        {
+            var sexRadius = 5;
+            return (   Math.Abs(male.Location.X - female.Location.X) <= sexRadius // если клетки находятся друг от друга в радиусе n пикселей,
+                    && Math.Abs(male.Location.Y - female.Location.Y) <= sexRadius // то они могут сделать ребёнка
+                    && male.Sex != female.Sex
+                    );
+        }
+        private bool IsMeal(Cell cell)
+        {
+            var mealRadius = 5;
+            var eated = -1; // индекс съеденной еды
+            var isEated = false; // было ли что-то съедено?
+            for(var i = 0; i < meals.Count; i++)
+                if (Math.Abs(meals[i].Location.X - cell.Location.X) <= mealRadius && Math.Abs(meals[i].Location.Y - cell.Location.Y) <= mealRadius)
+                {
+                    isEated = true;
+                    eated = i;
+                    break;
+                }
+
+            if (eated != -1) meals.RemoveAt(eated);
+            return isEated;
+        }
+
+        private bool IsAlive(Cell cell)
+        {
+            return cell.Age == 0;
+        }
+
+        private void NewCell()
+        {
+            var kids = new List<Cell>(); // здесь будут дети, появшиеся от пересечения 
             var randSex = new Random();
             var randLocation = new Random();
-            // когда все сделали ход, ищем любовничков
-            for (var i = 0; i < population.Count; i++)
+            // ищем любовничков
+            for (var firstParent = 0; firstParent < population.Count; firstParent++)
             {
-                for (var j = i; j < population.Count; j++)
+                for (var secondParent = firstParent + 1; secondParent < population.Count; secondParent++)
                 {
-                    if (LetsMakeOut(population[i], population[j]))
+                    if (IsMakeOut(population[firstParent], population[secondParent]))
                     {
                         // новый гендерный пол
                         var newSex = (Sex)randSex.Next(0, 2);
@@ -54,29 +98,32 @@ namespace The_Life_Game
                         // они начинают плодиться в геометрической прогрессии. Разом.
                         // пускай рождаются в радиусе 100 пикселей
                         var bornRadius = 50;
-                        var bornX = population[j].Location.X + randLocation.Next(-bornRadius, bornRadius);
-                        var bornY = population[j].Location.Y + randLocation.Next(-bornRadius, bornRadius);
+                        var bornX = population[secondParent].Location.X + randLocation.Next(-bornRadius, bornRadius);
+                        var bornY = population[secondParent].Location.Y + randLocation.Next(-bornRadius, bornRadius);
                         var newLocation = new Point(bornX, bornY);
 
-                        kids.Add(new Cell(newSex, newLocation));
+                        // здоровье ребёнка зависит от здоровья родителей
+                        int newAge;
+                        if (population[firstParent].Age >= 20 || population[secondParent].Age >= 20)
+                            newAge = 40;
+                        else
+                            newAge = 20;
+
+                        kids.Add(new Cell(newSex, newLocation, newAge));
                     }
                 }
             }
-            
-            foreach(var kid in kids)
+
+            foreach (var kid in kids)
             {
                 population.Add(kid);
             }
         }
-
-        // make out - заняться сексом 
-        private bool LetsMakeOut(Cell male, Cell female)
+        
+        private void NewMeal()
         {
-            var sexRadius = 5;
-            return (   Math.Abs(male.Location.X - female.Location.X) <= sexRadius // если клетки находятся друг от друга в радиусе n пикселей,
-                    && Math.Abs(male.Location.Y - female.Location.Y) <= sexRadius // то они могут сделать ребёнка
-                    && male.Sex != female.Sex
-                    );
+            var timeAppereance = 5;
+            if (time % timeAppereance == 0) meals.Add(new Meal());
         }
     }
 }
