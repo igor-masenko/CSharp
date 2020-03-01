@@ -34,8 +34,8 @@ namespace The_Life_Game
 
             Color = Sex switch
             {
-                Sex.Man => new SolidBrush(System.Drawing.Color.Blue),
-                Sex.Woman => new SolidBrush(System.Drawing.Color.Pink),
+                Sex.Male => new SolidBrush(System.Drawing.Color.Blue),
+                Sex.Female => new SolidBrush(System.Drawing.Color.Pink),
                 _ => new SolidBrush(System.Drawing.Color.Black),
             };
 
@@ -64,7 +64,6 @@ namespace The_Life_Game
                     location.X -= 5;
                     break;
             }
-
         }
     }
 }

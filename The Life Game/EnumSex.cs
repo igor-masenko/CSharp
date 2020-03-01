@@ -2,8 +2,8 @@
 {
     public enum Sex
     {
-        Man,
-        Woman
+        Male,
+        Female
     }
     public enum Direction
     {
