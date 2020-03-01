@@ -13,11 +13,17 @@ namespace The_Life_Game
 
         private void CheckBorderOfField()
         {
-            if (location.X >= 500) location.X = 5;
-            else if (location.X <= 0) location.X = 495;
+            var borderUp = 0;
+            var borderDown = 500;
+            var borderLeft = 0;
+            var borderRight = 500;
+            var border = 5;
 
-            if (location.Y >= 500) location.Y = 5;
-            else if (location.Y <= 0) location.Y = 495;
+            if (location.X >= borderRight) location.X = borderLeft + border;
+            else if (location.X <= borderLeft) location.X = borderRight - border;
+
+            if (location.Y >= borderDown) location.Y = borderUp + border;
+            else if (location.Y <= borderUp) location.Y = borderDown - border;
         }
 
         public int Age { get => age; }
@@ -43,25 +49,26 @@ namespace The_Life_Game
 
         public void Run()
         {
-            Direction direction = (Direction)(new Random().Next(1, 4));
+            var direction = (Direction)(new Random().Next(1, 4));
+            var step = 5;
 
             switch (direction)
             {
                 case Direction.Up:
                     CheckBorderOfField();
-                    location.Y += 5;
+                    location.Y += step;
                     break;
                 case Direction.Down:
                     CheckBorderOfField();
-                    location.Y -= 5;
+                    location.Y -= step;
                     break;
                 case Direction.Left:
                     CheckBorderOfField();
-                    location.X += 5;
+                    location.X += step;
                     break;
                 case Direction.Right:
                     CheckBorderOfField();
-                    location.X -= 5;
+                    location.X -= step;
                     break;
             }
         }
