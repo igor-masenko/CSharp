@@ -43,7 +43,7 @@ namespace The_Life_Game
             foreach (var meal in meals)
                 graphics.FillEllipse(meal.Color, meal.Location.X, meal.Location.Y, Meal.Radius, Meal.Radius);
 
-            population.RemoveAll(IsAlive); // убиваем всех старичков
+            population.RemoveAll(IsNotAlive); // убиваем всех старичков
             NewCell();  // рожаем новые клетки
             NewMeal();
         }
@@ -57,7 +57,7 @@ namespace The_Life_Game
                     && male.Sex != female.Sex
                     );
         }
-        private bool IsMeal(Cell cell)
+        private bool IsMeal(Cell cell) // TODO: метод делает 2 действия: так быть не должно
         {
             var mealRadius = 5;
             var eated = -1; // индекс съеденной еды
@@ -74,7 +74,7 @@ namespace The_Life_Game
             return isEated;
         }
 
-        private bool IsAlive(Cell cell)
+        private bool IsNotAlive(Cell cell)
         {
             return cell.Age == 0;
         }
@@ -115,9 +115,7 @@ namespace The_Life_Game
             }
 
             foreach (var kid in kids)
-            {
                 population.Add(kid);
-            }
         }
         
         private void NewMeal()

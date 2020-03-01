@@ -16,8 +16,14 @@ namespace The_Life_Game
         public Meal()
         {
             var randLocation = new Random();
-            location = new Point(randLocation.Next(5, 495), randLocation.Next(5, 495));
+            var borderLeft = 0;
+            var borderRight = 500;
+            var borderUp = 0;
+            var borderDown = 500;
+            var border = 5;
 
+            location = new Point(randLocation.Next(borderLeft + border, borderRight - border)
+                                ,randLocation.Next(borderUp + border, borderDown - border));
             color = new SolidBrush(System.Drawing.Color.LightGreen);
         }
     }
