@@ -88,6 +88,49 @@ namespace Sort
             }
         }
 
+        static private void MergeDesc(List<int> array, int beginingIndex, int separatorIndex, int endingIndex)
+        {
+            if (beginingIndex <= endingIndex
+                && ((beginingIndex <= separatorIndex) || (separatorIndex <= endingIndex)))
+            {
+                var leftArrayLength = separatorIndex - beginingIndex + 1;
+                var rightArrayLength = endingIndex - separatorIndex;
+
+                var leftArray = new List<int>(array.GetRange(beginingIndex, leftArrayLength));
+                var rightArray = new List<int>(array.GetRange(separatorIndex + 1, rightArrayLength));
+
+                var leftArrayIndex = 0;
+                var rightArrayIndex = 0;
+
+                for (int arrayIndex = beginingIndex; arrayIndex <= endingIndex; arrayIndex++)
+                {
+                    if (rightArrayIndex < rightArrayLength && leftArrayIndex < leftArrayLength)
+                    {
+                        if (leftArray[leftArrayIndex] > rightArray[rightArrayIndex])
+                        {
+                            array[arrayIndex] = leftArray[leftArrayIndex];
+                            leftArrayIndex++;
+                        }
+                        else
+                        {
+                            array[arrayIndex] = rightArray[rightArrayIndex];
+                            rightArrayIndex++;
+                        }
+                    }
+                    else if (leftArrayLength >= leftArrayIndex && rightArrayIndex < rightArrayLength)
+                    {
+                        array[arrayIndex] = rightArray[rightArrayIndex];
+                        rightArrayIndex++;
+                    }
+                    else if (rightArrayLength >= rightArrayIndex && leftArrayIndex < leftArrayLength)
+                    {
+                        array[arrayIndex] = leftArray[leftArrayIndex];
+                        leftArrayIndex++;
+                    }
+                }
+            }
+        }
+
         static private void MergeSortAsc(List<int> array, int beginingIndex, int endingIndex)
         {
             if (beginingIndex < endingIndex)
@@ -99,6 +142,16 @@ namespace Sort
             }
         }
 
+        static private void MergeSortDesc(List<int> array, int beginingIndex, int endingIndex)
+        {
+            if (beginingIndex < endingIndex)
+            {
+                var separatorIndex = (int)Math.Floor((decimal)(beginingIndex + endingIndex) / 2);
+                MergeSortDesc(array, beginingIndex, separatorIndex);
+                MergeSortDesc(array, separatorIndex + 1, endingIndex);
+                MergeDesc(array, beginingIndex, separatorIndex, endingIndex);
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -111,6 +164,9 @@ namespace Sort
 
             MergeSortAsc(array, 0, array.Count - 1);
             PrintArray(array, "Merge sort asc: \t");
+
+            MergeSortDesc(array, 0, array.Count - 1);
+            PrintArray(array, "Merge sort desc: \t");
 
             Console.ReadKey();
             
