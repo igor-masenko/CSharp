@@ -1,6 +1,0 @@
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\bin\Debug\WakeUpNeo.exe.config
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\bin\Debug\WakeUpNeo.exe
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\bin\Debug\WakeUpNeo.pdb
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\obj\Debug\WakeUpNeo.csprojAssemblyReference.cache
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\obj\Debug\WakeUpNeo.exe
-C:\Projects\C#\LearningCSharp\1. Wake Up, Neo\WakeUpNeo\obj\Debug\WakeUpNeo.pdb

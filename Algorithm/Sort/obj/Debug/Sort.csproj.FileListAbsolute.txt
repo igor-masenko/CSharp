@@ -1,6 +1,0 @@
-C:\Projects\C#\Algorithm\Sort\bin\Debug\Sort.exe.config
-C:\Projects\C#\Algorithm\Sort\bin\Debug\Sort.exe
-C:\Projects\C#\Algorithm\Sort\bin\Debug\Sort.pdb
-C:\Projects\C#\Algorithm\Sort\obj\Debug\Sort.csprojAssemblyReference.cache
-C:\Projects\C#\Algorithm\Sort\obj\Debug\Sort.exe
-C:\Projects\C#\Algorithm\Sort\obj\Debug\Sort.pdb

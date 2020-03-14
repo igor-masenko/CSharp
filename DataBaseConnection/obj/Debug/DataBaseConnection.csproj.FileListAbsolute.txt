@@ -1,6 +1,0 @@
-C:\Projects\C#\DataBaseConnection\bin\Debug\DataBaseConnection.exe.config
-C:\Projects\C#\DataBaseConnection\bin\Debug\DataBaseConnection.exe
-C:\Projects\C#\DataBaseConnection\bin\Debug\DataBaseConnection.pdb
-C:\Projects\C#\DataBaseConnection\obj\Debug\DataBaseConnection.csprojAssemblyReference.cache
-C:\Projects\C#\DataBaseConnection\obj\Debug\DataBaseConnection.exe
-C:\Projects\C#\DataBaseConnection\obj\Debug\DataBaseConnection.pdb
