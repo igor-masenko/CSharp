@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sort
 {
@@ -17,6 +14,7 @@ namespace Sort
             Console.WriteLine();
         }
 
+        #region InsertionSort
         static private void InsertionSortAsc(List<int> array)
         {
             for (var sortedIndex = 1; sortedIndex < array.Count; sortedIndex++)
@@ -45,6 +43,9 @@ namespace Sort
             }
         }
 
+        #endregion
+
+        #region MergeSort
         static private void MergeAsc(List<int> array, int beginingIndex, int separatorIndex, int endingIndex)
         {
             if (beginingIndex <= endingIndex 
@@ -153,20 +154,78 @@ namespace Sort
             }
         }
 
+        #endregion
+
+        #region SelectionSort
+        static private void SelectionSortAsc(List<int> array)
+        {
+            if (array.Count > 0)
+            {
+                for(var index = 0; index < array.Count - 1; index++)
+                {
+                    var min = Int32.MaxValue;
+                    var swampIndex = index;
+                    for (var minIndex = index; minIndex < array.Count; minIndex++)
+                        if (min >= array[minIndex])
+                        {
+                            min = array[minIndex];
+                            swampIndex = minIndex;
+                        }
+
+                    (array[index], array[swampIndex]) = (min, array[index]);
+                }
+            }
+        }
+
+        static private void SelectionSortDesc(List<int> array)
+        {
+            if (array.Count > 0)
+            {
+                for (var index = 0; index < array.Count - 1; index++)
+                {
+                    var max = Int32.MinValue;
+                    var swampIndex = index;
+                    for (var maxIndex = index; maxIndex < array.Count; maxIndex++)
+                        if (max <= array[maxIndex])
+                        {
+                            max = array[maxIndex];
+                            swampIndex = maxIndex;
+                        }
+
+                    (array[index], array[swampIndex]) = (max, array[index]);
+                }
+            }
+        }
+
+        #endregion
+
         static void Main(string[] args)
         {
-            List<int> array = new List<int> { 1, 5, 2, 6, 8, 1, 10 };
-            InsertionSortAsc(array);
-            PrintArray(array, "Insertion sort asc: \t");
+            List<int> array = new List<int> { 2, 5, 1, 6, 8, 1, 10 };
+            List<int> sortedArray = array;
+            
+            InsertionSortAsc(sortedArray);
+            PrintArray(sortedArray, "Insertion sort asc: \t");
 
-            InsertionSortDesc(array);
-            PrintArray(array, "Insertion sort desc: \t");
+            sortedArray = array;
+            InsertionSortDesc(sortedArray);
+            PrintArray(sortedArray, "Insertion sort desc: \t");
 
-            MergeSortAsc(array, 0, array.Count - 1);
-            PrintArray(array, "Merge sort asc: \t");
+            sortedArray = array;
+            MergeSortAsc(sortedArray, 0, sortedArray.Count - 1);
+            PrintArray(sortedArray, "Merge sort asc: \t");
 
-            MergeSortDesc(array, 0, array.Count - 1);
-            PrintArray(array, "Merge sort desc: \t");
+            sortedArray = array;
+            MergeSortDesc(sortedArray, 0, sortedArray.Count - 1);
+            PrintArray(sortedArray, "Merge sort desc: \t");
+
+            sortedArray = array;
+            SelectionSortAsc(sortedArray);
+            PrintArray(sortedArray, "Select sort asc: \t");
+            
+            sortedArray = array;
+            SelectionSortDesc(sortedArray);
+            PrintArray(sortedArray, "Select sort desc: \t");
 
             Console.ReadKey();
             
