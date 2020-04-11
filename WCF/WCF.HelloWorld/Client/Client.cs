@@ -10,7 +10,7 @@ namespace Client
             Console.Title = "CLIENT";
 
             // указание, где ожидать входящие сообщения
-            Uri address = new Uri("http://localhost:4000/IContractor");
+            Uri address = new Uri("http://localhost:8000/IContractor");
             // указание как обмениваться сообщениями
             BasicHttpBinding binding = new BasicHttpBinding();
 
@@ -21,7 +21,7 @@ namespace Client
             IContractor channel = factory.CreateChannel();
 
             Console.WriteLine("Attention! I'm sending message...");
-            channel.WelcomeMessage("Gay Porn");
+            channel.WelcomeMessage("Hello World!!!");
             Console.WriteLine("The message was sent.");
 
         }

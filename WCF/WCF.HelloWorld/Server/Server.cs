@@ -10,7 +10,7 @@ namespace Server
             Console.Title = "SERVER";
 
             // указание адреса, где ожидать входящие сообщения
-            Uri address = new Uri("http://localhost:4000/IContractor");
+            Uri address = new Uri("http://localhost:8000/IContractor");
 
             // указание привязки, как обмениваться сообщениями
             BasicHttpBinding binding = new BasicHttpBinding();
